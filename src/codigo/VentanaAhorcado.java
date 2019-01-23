@@ -23,7 +23,12 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     
     private void chequeaBoton(JButton boton){
         boton.setEnabled(false);
+        chequeLetra(boton.getText());
     
+    
+    }
+    
+    private void chequeLetra(String Letra){
     }
     
     
