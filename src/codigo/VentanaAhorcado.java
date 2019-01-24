@@ -6,6 +6,8 @@
 package codigo;
 
 import java.awt.DisplayMode;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -33,6 +35,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         aux += "_ ";
         }
         display.setText(aux);
+        dibujaImagen(0);
     }
 
     
@@ -48,12 +51,12 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         String palabraConGuiones = display.getText();
         //comparo la letra que ha sido pulsada con las letras
         //de la palabra oculta 
-        
+        char letraPulsada = letra.charAt(0);
         for (int i=0; i<palabraOculta.length(); i++){
             if (palabraOculta.charAt(i) == letra.charAt(0)){
                 palabraConGuiones = palabraConGuiones.substring(0, 2*i) //el trozo de la izquierda más que la otra letra
                         + letra 
-                        + palabraConGuiones.substring(2*i+1); //el trozo de la derechaa más que la otra letra
+                        + palabraConGuiones.substring(2*i+1); //el resto
                         
                  
             }
@@ -61,7 +64,32 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         //actualizo el display para que muestre las letras acertadas
          display.setText (palabraConGuiones);
         
+        
     }
+    
+    private void dibujaImagen (int numeroFallos){
+        String nombreImagen ="";
+        switch (numeroFallos){
+            case 0 : nombreImagen = "/imagenes/ahorcado_0.png"; break; 
+            case 1 : nombreImagen = "/imagenes/ahorcado_1.png"; break;
+            case 2 : nombreImagen = "/imagenes/ahorcado_2.png"; break;
+            case 3 : nombreImagen = "/imagenes/ahorcado_3.png"; break;
+            case 4 : nombreImagen = "/imagenes/ahorcado_4.png"; break;
+            case 5 : nombreImagen = "/imagenes/ahorcado_5.png"; break;
+            default : nombreImagen = "/imagenes/ahorcado_fin.png"; break;
+           
+        }
+           ImageIcon miImagen =
+              new ImageIcon(
+                      new ImageIcon(getClass().getResource(nombreImagen))
+                      .getImage()
+                      .getScaledInstance(visorImagen.getWidth(),
+                                         visorImagen.getHeight(),
+                                         Image.SCALE_DEFAULT)
+              );
+
+      visorImagen.setIcon(miImagen);
+  }
     
     
     /**
@@ -387,24 +415,24 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(visorImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(164, 164, 164)
+                                        .addComponent(visorImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -414,7 +442,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(visorImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(visorImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
